@@ -1,7 +1,7 @@
 <?php
 // Import
-$config = require ROOT . 'system/config.php';
-$pdo = require ROOT . 'system/db.php';
+$config = require 'system/config.php';
+$pdo = require 'system/db.php';
 
 // Ambil artikel
 $query = $pdo->query('SELECT id, judul FROM artikel');
