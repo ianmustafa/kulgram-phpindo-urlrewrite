@@ -11,16 +11,18 @@ $pdo    = require ROOT . 'system/db.php';
 require ROOT . 'system/helpers.php';
 
 
-// Ambil ID artikel jika ada
-$artikel_id = isset($_GET['artikel_id']) ? $_GET['artikel_id'] : null;
-// Ambil ID halaman jika ada
-$halaman_id = isset($_GET['halaman_id']) ? $_GET['halaman_id'] : null;
+// Mari bermain dengan Request URI
+$uri = trim ($_SERVER['REQUEST_URI'], '/');
+// Pisahkan URI per segmennya
+$url_segments = explode('/', $uri);
 
 
 // Route sederhana
-if ($halaman_id !== null) {
+if ($url_segments[0] === 'halaman') {
+    $halaman_id = $url_segments[1];
     include ROOT . 'app/halaman.php';
-} else if ($artikel_id !== null) {
+} else if ($url_segments[0] === 'artikel') {
+    $artikel_id = $url_segments[1];
     include ROOT . 'app/artikel.php';
 } else {
     include ROOT . 'app/beranda.php';
